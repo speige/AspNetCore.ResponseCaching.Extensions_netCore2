@@ -13,9 +13,21 @@ Pull requests are welcome
 https://www.nuget.org/packages/AspNetCore.ResponseCaching.Extensions/
 
 # Cache Implementations
-These inherit from the base ResponseCache so they follow its basic rules (requires HTTP Response Cache Headers/etc). However, they allow for extra customizations (such as ignoring the browser's no-cache/no-store HTTP Request Headers)
+These inherit from the base ResponseCache so they follow the same basic rules.
+For example: A response must have a cache-control of public with a future max-age in order to be cached.
 
-For info on the default implementation see https://github.com/aspnet/ResponseCaching and https://docs.microsoft.com/en-us/aspnet/core/performance/caching/middleware
+For more info see https://github.com/aspnet/ResponseCaching and https://docs.microsoft.com/en-us/aspnet/core/performance/caching/middleware
+
+However, they allow for extra customizations.
+Example: The default ResponseCache complies with the browser's no-cache/no-store HTTP Request Headers. This makes sense for an intermediary cache like an ISP or CDN, but not for the originating server.
+This behavior can be overridden via this extension method:
+```
+namespace AspNetCore.ResponseCaching.Extensions
+{
+	public static void AddResponseCaching(this IServiceCollection services, Action<ResponseCachingOptions> configureOptions = null, bool ignoreBrowserNoCacheNoStore = true)
+}
+```
+
 
 ## DiskBackedMemoryCache
 High-performance due to limited use of locks. Allows infinite cache size on disk while still limiting the amount in RAM (retention based on most recently requested URLs). Doesn't lose response cache during app/server restarts. Auto clears cache when new versions of your app are deployed. 

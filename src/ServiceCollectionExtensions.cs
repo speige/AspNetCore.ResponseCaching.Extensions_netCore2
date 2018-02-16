@@ -43,7 +43,7 @@ namespace AspNetCore.ResponseCaching.Extensions
       }
       else
       {
-        services.AddResponseCaching(configureOptions);
+        services.AddResponseCaching<CustomResponseCachingMiddleware, ResponseCachingPolicyProvider, ResponseCachingKeyProvider>(configureOptions);
       }
     }
 
