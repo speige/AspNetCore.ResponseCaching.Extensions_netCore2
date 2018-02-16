@@ -1,15 +1,15 @@
 # AspNetCore.ResponseCaching.Extensions
 
-# Description
+## Description
 Extensions for overriding the behavior of the default ASP.Net Core ResponseCaching as well as additional Cache implementations such as Disk. (Similar to OutputCache of previous versions of ASP.Net)
 
-# License
+## License
 MIT
 
-#Contributing
+## Contributing
 Pull requests are welcome
 
-#NuGet
+## NuGet
 https://www.nuget.org/packages/AspNetCore.ResponseCaching.Extensions/
 
 # Usage
@@ -30,5 +30,5 @@ Add this to the Configure method of Startup.cs
 # Cache Implementations
 These inherit from the base ResponseCache so they follow its basic rules (requires HTTP Response Cache Headers/etc). However, they allow for extra customizations (such as ignoring the browser's no-cache/no-store HTTP Request Headers)
 
-# DiskBackedMemoryCache
+## DiskBackedMemoryCache
 High-performance due to limited use of locks. Allows infinite cache size on disk while still limiting the amount in RAM (retention based on most recently requested URLs). Doesn't lose response cache during app/server restarts. Auto clears cache when new versions of your app are deployed. 
