@@ -35,6 +35,18 @@ namespace AspNetCore.ResponseCaching.Extensions
       }
     }
 
+    public static void AddResponseCaching(this IServiceCollection services, Action<ResponseCachingOptions> configureOptions = null, bool ignoreBrowserNoCacheNoStore = true)
+    {
+      if (ignoreBrowserNoCacheNoStore)
+      {
+        services.AddResponseCaching<CustomResponseCachingMiddleware, IgnoreBrowserNoCacheNoStoreResponseCachingPolicyProvider, ResponseCachingKeyProvider>(configureOptions);
+      }
+      else
+      {
+        services.AddResponseCaching(configureOptions);
+      }
+    }
+
     public static void AddResponseCaching<T1, T2, T3>(this IServiceCollection services, Action<ResponseCachingOptions> configureOptions = null) where T1 : ResponseCachingMiddleware where T2 : class, IResponseCachingPolicyProvider where T3 : class, IResponseCachingKeyProvider
     {
       if (configureOptions != null)

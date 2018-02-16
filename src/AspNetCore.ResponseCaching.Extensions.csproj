@@ -11,6 +11,7 @@
     <Authors>Devin Garner</Authors>
     <Company />
     <Description>Extensions for overriding the behaviour of the default ASP.Net Core ResponseCaching as well as additional Cache implementations such as Disk. (Similar to OutputCache of previous versions of ASP.Net)</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
