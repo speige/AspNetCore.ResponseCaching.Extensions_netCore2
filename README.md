@@ -30,7 +30,7 @@ Add this to the ConfigureServices method of Startup.cs
 ```
 	services.AddDiskBackedMemoryResponseCaching((x, y) =>
 	{
-	x.MaximumBodySize = 5 * 1024 * 1024; // Default in https://github.com/aspnet/ResponseCaching is 64MB
+		x.MaximumBodySize = 5 * 1024 * 1024; // Default of 64MB is probably way too big for most scenarios
 	});
 ```
 
